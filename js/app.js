@@ -2,21 +2,31 @@
 	'use strict';
 	
 
-
+	let list = JSON.parse(localStorage.getItem('list'))||[]
 	new Vue({
 		el:'#app',
 		data:{
 			todoName:'',
 			editId : -1,
-			list : [
-				{id : 1 , name : '吃饭' , done : true},
-				{id : 2 , name : '睡觉' , done : false},
-				{id : 3 , name : '打豆豆' , done : false},
-			]
+			list
 		},
 		computed:{
 			showFoot(){
 				return this.list.length > 0
+			},
+			comOver(){
+				return this.list.filter(item=>!item.done).length
+			},
+			hideClear(){
+				return this.list.some(item => item.done)
+			}
+		},
+		watch:{
+			list:{
+				deep:true,
+				handler(newVal){
+					localStorage.setItem('list',JSON.stringify(newVal))
+				}
 			}
 		},
 		methods:{

@@ -8,7 +8,22 @@
 5. 先实例化vue环境 ,引入vue包 
 
 ## 项目开始
-1. 做几条假数据,渲染到页面
+1. 使用`本地存储 localStorage`存,取数据
+ ```js
+ //设置默认值
+    let list = JSON.parse(localStorage.getItem('list'))||[]
+ ```
+ ```js
+ //使用watch监听 数据发生改变,就存到本地
+    watch:{
+        list:{
+            deep:true,
+            handler(newVal){
+                localStorage.setItem('list',JSON.stringify(newVal))
+            }
+        }
+    },
+ ```
     - 使用 `v-for` 循环遍历数据
 2. 修改多选框的选中状态  (多选框:表单元素)
     - 双向绑定 多选框和数据
@@ -72,6 +87,11 @@
                 }
             }
         ```
+8. 尾部细节处理
+    - 处理 `0 items left`的实时更改
+    - 处理 `Clear completed`的显示和隐藏
+9. 细节优化
+
 
 
     

@@ -2,13 +2,16 @@
 	'use strict';
 	
 
-	let list = JSON.parse(localStorage.getItem('list'))||[]
+	
 	new Vue({
 		el:'#app',
 		data:{
 			todoName:'',
 			editId : -1,
-			list
+			list:''
+		},
+		created(){
+			this.list = JSON.parse(localStorage.getItem('list'))||[]
 		},
 		computed:{
 			showFoot(){

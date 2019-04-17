@@ -11,7 +11,10 @@
 1. 使用`本地存储 localStorage`存,取数据
  ```js
  //设置默认值
-    let list = JSON.parse(localStorage.getItem('list'))||[]
+ //使用vue生命周期
+ created(){
+     JSON.parse(localStorage.getItem('list'))||[]
+ }
  ```
  ```js
  //使用watch监听 数据发生改变,就存到本地
